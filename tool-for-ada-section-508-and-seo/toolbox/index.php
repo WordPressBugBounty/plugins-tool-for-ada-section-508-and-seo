@@ -1,3 +1,9 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+?>
+
 <form action="options.php" method="post">
        <?php
        settings_fields( 'dvin508-toolbox' );

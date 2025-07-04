@@ -1,15 +1,18 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 class Dvin508_Media_api{
 
-    public $page_number;
-    public $media_type;
-    public $media_per_page = 25;
-    public $media_list = array();
-    public $media_size = array(80,80);
+    private $page_number;
+    private $media_type;
+    private $media_per_page = 25;
+    private $media_list = [];
+    private $media_size = [80,80];
 
     public function __construct(){
-        add_action( 'rest_api_init', array($this,'media_route') );
-        add_action( 'rest_api_init', array($this,'update_media_route') );
+        add_action( 'rest_api_init', [$this,'media_route'] );
     }
 
     /* 
@@ -27,62 +30,44 @@ class Dvin508_Media_api{
         Register API root
     */
     public function media_route(){
-        register_rest_route( 
-            'dvin508-seo/v1',
-            '/media/missing/(?P<media_type>[a-z]+)/(?P<page_number>\d+)',
-            array(
-                'methods' => 'GET',
-                'callback' =>  array($this,'get_media_type'),
-                'permission_callback' => array($this, 'check_permission')
-            )
-        );
+        register_rest_route( 'dvin508-seo/v1', '/media/missing/(?P<media_type>[a-z]+)/(?P<page_number>\d+)', [
+            'methods' => 'GET',
+            'callback' =>  [$this,'get_media_type'],
+            'permission_callback' => [$this, 'check_permission']
+        ]);
+
+        register_rest_route('dvin508-seo/v1', '/update_media/', [
+            'methods' => 'POST',
+            'callback' => [$this, 'update_media'],
+            'permission_callback' => [$this, 'check_permission']
+        ]);
     }
 
-    function check_permission($request_data){
-        //return true;
-        //print_r(wp_get_current_user());
-        if ( is_super_admin() ) {
-            return true;
-        }else{
-            return false;
-        }
-
+    public function check_permission($request){
+        return is_super_admin();
     }
 
-    public function get_media_type( $request_data ){
+    public function get_media_type( $request ){
         /* getting the varibles from the url */
-            $present_page_array = $request_data->get_url_params();
+        $params = $request->get_url_params();
 
-            $this->page_number = $present_page_array['page_number'];
-            $this->media_type = $present_page_array['media_type'];
-           
+        $this->page_number = (int) $params['page_number'];
+        $this->media_type = $params['media_type'];
         /* end */
 
-        /* 
-            Calling appropresate media selection based on the type
-            of media requested
-        */
-
+        // Choose appropriate media retrieval method
         switch($this->media_type){
-            case 'all':
-                $this->get_all_media();
-            break;
-
             case 'caption':
-                $this->get_caption_or_content_missing_media('excerpt');
-            break;
-
+                $this->get_missing_caption_or_content('excerpt');
+                break;
             case 'alt':
-                $this->get_alt_missing_media();
-            break;
-
+                $this->get_missing_alt_media();
+                break;
             case 'content':
-                $this->get_caption_or_content_missing_media('content');
-            break;
-
+                $this->get_missing_caption_or_content('content');
+                break;
             default:
                 $this->get_all_media();
-            break;
         }
         
         return $this->media_list;
@@ -91,163 +76,143 @@ class Dvin508_Media_api{
     /*
         Gell all the media in the site 
     */
-    function get_all_media(){
-        $query = new WP_Query(array(
+    private function get_all_media(){
+        $query = new WP_Query([
             'post_type'      => 'attachment',
             'post_mime_type' => 'image',
             'post_status'    => 'any',
             'posts_per_page' => $this->media_per_page,
-            'paged' => $this->page_number
-        ));
+            'paged'          => $this->page_number
+        ]);
 
-        $this->media_list['present_page'] = (int)$this->page_number;
+        $this->media_list = [
+            'present_page' => $this->page_number,
+            'data'         => [],
+            'max_pages'    => $query->max_num_pages
+        ];
 
-        foreach($query->get_posts() as $media){
-            $this->media_list['data'][]= array('id'=> $media->ID,
-                            'caption' => $media->post_excerpt,
-                            'description' => $media->post_content,
-                            'image' => wp_get_attachment_image($media->ID, $this->media_size ), 
-                            'alt' =>  get_post_meta( $media->ID, '_wp_attachment_image_alt', true),
-                    );
+        foreach ($query->get_posts() as $media) {
+            $this->media_list['data'][] = $this->format_media($media);
         }
-
-        $this->media_list['max_pages'] = $query->max_num_pages;
-
     }
 
     /*
         This is used for getting missing caption and content both    
         that is controlled my input $missing -> 'excerpt' or 'content'
     */
-    public function get_caption_or_content_missing_media($missing){
+    private function get_missing_caption_or_content($missing){
 
         global $wpdb;
 
-        $query1 = $wpdb->get_row('Select count(*) as count from '.$wpdb->prefix.'posts where post_type = "attachment" AND post_mime_type LIKE "image/%" AND post_'.$missing.'= ""');
-        $total_results = ($query1->count);
+        $total_count = $wpdb->get_var($wpdb->prepare(
+            "SELECT COUNT(*) FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_mime_type LIKE 'image/%%' AND post_meta_key = %s",
+            $missing
+        ));
 
-        $max_pages = ceil($total_results / $this->media_per_page);
-
-        $offset = ($this->page_number - 1) * $this->media_per_page;
-        //print_r($max_pages);
-
-        $query =  $wpdb->get_results('Select * from '.$wpdb->prefix.'posts where post_type = "attachment" AND post_mime_type LIKE "image/%" AND post_'.$missing.'= "" Limit '.$this->media_per_page.' Offset '.$offset);
-
-        //print_r($query);
-        
-        $this->media_list['present_page'] = (int)$this->page_number;
-
-        foreach($query as $media){
-            $this->media_list['data'][]= array('id'=> $media->ID,
-                            'caption' => $media->post_excerpt,
-                            'description' => $media->post_content,
-                            'image' => wp_get_attachment_image($media->ID, $this->media_size), 
-                            'alt' =>  get_post_meta( $media->ID, '_wp_attachment_image_alt', true),
-                    );
-        }
-
-        $this->media_list['max_pages'] = $max_pages;
+        $this->fetch_media_with_offset("post_{$missing} = ''", $total_count);
     }
 
-    public function get_alt_missing_media(){
-
-        /* 
-        sql query for missing alt when alt filed '_wp_attachment_image_alt' is there in table
-
-        SELECT post_id FROM wp_postmeta WHERE post_id IN (SELECT ID FROM wp_posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%") AND meta_key="_wp_attachment_image_alt" AND meta_value=""
-
-        sql to find all the attachment with missing alt field '_wp_attachment_image_alt' in table
-
-        SELECT ID FROM wp_posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%" AND ID not in (SELECT post_id from wp_postmeta where meta_key="_wp_attachment_image_alt")
-
-        union of above two list will give all the attachment missing alt filed or empty alt filed
-
-        geting total count 
-
-        select count(*) as count from (SELECT post_id FROM wp_postmeta WHERE post_id IN (SELECT ID FROM wp_posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%") AND meta_key="_wp_attachment_image_alt" AND meta_value=""
-
-        UNION
-
-        SELECT ID FROM wp_posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%" AND ID not in (SELECT post_id from wp_postmeta where meta_key="_wp_attachment_image_alt")) as dum
-
-        Get all the post from the post list
-
-        select * from wp_posts where ID in (select post_id from (SELECT post_id FROM wp_postmeta WHERE post_id IN (SELECT ID FROM wp_posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%") AND meta_key="_wp_attachment_image_alt" AND meta_value=""
-
-        UNION
-
-        SELECT ID FROM wp_posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%" AND ID not in (SELECT post_id from wp_postmeta where meta_key="_wp_attachment_image_alt")) as dum) 
-
-        */
+    private function get_missing_alt_media(){
 
         global $wpdb;
 
-        $query1 = $wpdb->get_row('Select count(*) as count from (SELECT post_id FROM '.$wpdb->prefix.'postmeta WHERE post_id IN (SELECT ID FROM '.$wpdb->prefix.'posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%") AND meta_key="_wp_attachment_image_alt" AND meta_value=""
+        $query = "
+            SELECT COUNT(*) FROM (
+                SELECT post_id FROM {$wpdb->prefix}postmeta 
+                WHERE post_id IN (
+                    SELECT ID FROM {$wpdb->prefix}posts 
+                    WHERE post_type = 'attachment' AND post_mime_type LIKE 'image/%%'
+                ) 
+                AND meta_key = '_wp_attachment_image_alt' AND meta_value = ''
+                UNION
+                SELECT ID FROM {$wpdb->prefix}posts 
+                WHERE post_type = 'attachment' AND post_mime_type LIKE 'image/%%' 
+                AND ID NOT IN (
+                    SELECT post_id FROM {$wpdb->prefix}postmeta WHERE meta_key = '_wp_attachment_image_alt'
+                )
+            ) AS missing_alt
+        ";
 
-        UNION
-
-        SELECT ID FROM '.$wpdb->prefix.'posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%" AND ID not in (SELECT post_id from '.$wpdb->prefix.'postmeta where meta_key="_wp_attachment_image_alt")) as dum');
-
-        $total_results = ($query1->count);
-
-        $max_pages = ceil($total_results / $this->media_per_page);
-
-        $offset = ($this->page_number - 1) * $this->media_per_page;
-
-        $query =  $wpdb->get_results('select * from '.$wpdb->prefix.'posts where ID in (select post_id from (SELECT post_id FROM '.$wpdb->prefix.'postmeta WHERE post_id IN (SELECT ID FROM '.$wpdb->prefix.'posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%") AND meta_key="_wp_attachment_image_alt" AND meta_value=""
-
-        UNION
-        
-        SELECT ID FROM '.$wpdb->prefix.'posts WHERE post_type = "attachment" AND post_mime_type LIKE "image/%" AND ID not in (SELECT post_id from '.$wpdb->prefix.'postmeta where meta_key="_wp_attachment_image_alt")) as dum) Limit '.$this->media_per_page.' Offset '.$offset);
-
-        //print_r($query);
-        
-        $this->media_list['present_page'] = (int)$this->page_number;
-
-        foreach($query as $media){
-            $this->media_list['data'][]= array('id'=> $media->ID,
-                            'caption' => $media->post_excerpt,
-                            'description' => $media->post_content,
-                            'image' => wp_get_attachment_image($media->ID, $this->media_size), 
-                            'alt' =>  get_post_meta( $media->ID, '_wp_attachment_image_alt', true),
-                    );
-        }
-
-        $this->media_list['max_pages'] = $max_pages;
-    }
-
-    /*
-        Register root for update single media
-    */
-    public function update_media_route(){
-        register_rest_route( 
-            'dvin508-seo/v1',
-            '/update_media/',
-            array(
-                'methods' => 'POST',
-                'callback' =>  array($this,'update_media'),
-                'permission_callback' => array($this, 'check_permission')
+        $total_count = (int) $wpdb->get_var($query);
+        $this->fetch_media_with_offset("
+            ID IN (
+                SELECT post_id FROM (
+                    SELECT post_id FROM {$wpdb->prefix}postmeta 
+                    WHERE post_id IN (
+                        SELECT ID FROM {$wpdb->prefix}posts 
+                        WHERE post_type = 'attachment' AND post_mime_type LIKE 'image/%%'
+                    ) 
+                    AND meta_key = '_wp_attachment_image_alt' AND meta_value = ''
+                    UNION
+                    SELECT ID FROM {$wpdb->prefix}posts 
+                    WHERE post_type = 'attachment' AND post_mime_type LIKE 'image/%%' 
+                    AND ID NOT IN (
+                        SELECT post_id FROM {$wpdb->prefix}postmeta WHERE meta_key = '_wp_attachment_image_alt'
+                    )
+                ) AS missing_alt
             )
-        );
+        ", $total_count);
+    }
+
+    /**
+     * Retrieves media with an offset
+     */
+    private function fetch_media_with_offset($condition, $total_count) {
+        global $wpdb;
+
+        $max_pages = ceil($total_count / $this->media_per_page);
+        $offset = ($this->page_number - 1) * $this->media_per_page;
+        
+        $base_sql = "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = %s";
+        $args = ['attachment'];
+
+        if (!empty($some_filter)) {
+            $base_sql .= " AND post_status = %s";
+            $args[] = $some_filter;
+        }
+
+        $base_sql .= " LIMIT %d OFFSET %d";
+        $args[] = $this->media_per_page;
+        $args[] = $offset;
+
+        $query = $wpdb->get_results($wpdb->prepare($base_sql, ...$args));
+
+
+        $this->media_list = [
+            'present_page' => $this->page_number,
+            'data'         => array_map([$this, 'format_media'], $query),
+            'max_pages'    => $max_pages
+        ];
+    }
+
+    /**
+     * Formats media data for output
+     */
+    private function format_media($media) {
+        return [
+            'id'          => $media->ID,
+            'caption'     => $media->post_excerpt,
+            'description' => $media->post_content,
+            'image'       => wp_get_attachment_image($media->ID, $this->media_size),
+            'alt'         => get_post_meta($media->ID, '_wp_attachment_image_alt', true)
+        ];
     }
 
     /*
         Passing all the media detial at once and it will be updated
     */
-    public function update_media( $request_data ){
-        
-        $parameters_list = $request_data->get_params();
+    public function update_media( $request ){
+        $media_items = $request->get_params();
 
-        foreach($parameters_list as $parameters){
+        foreach($media_items as $media){
         $update = array(
-            'ID'		=> $parameters['id'],
-			'post_excerpt' => $parameters['caption'],		// Set image Caption (Excerpt) to sanitized title
-			'post_content'	=> $parameters['description']	
+            'ID'		    => $media['id'],
+			'post_excerpt'  => sanitize_text_field($media['caption']),
+            'post_content'  => sanitize_textarea_field($media['description'])	
         );
-        wp_update_post($update);
-        update_post_meta($parameters['id'] , '_wp_attachment_image_alt', $parameters['alt'] );
+            update_post_meta($media['id'], '_wp_attachment_image_alt', sanitize_text_field($media['alt']));
         }
-        return array("result"=>true);
+        return ['result' => true];
     }
     
 }

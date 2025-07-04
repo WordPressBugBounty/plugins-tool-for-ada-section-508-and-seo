@@ -1,9 +1,12 @@
-=== WP Accessibility Tools & Missing Alt Text Finder ===
+=== Accessibility Tools & Alt Text Finder ===
 Contributors: Foucciano, rajeshsingh520, chilifide
-Tags:  web accessibility, accessible, accessability, a11y, ADA Section 508 standards, wcag, media library, missing alternative text finder,
+Tags:  web accessibility, accessible, ADA Section 508 standards, media library, missing alternative text finder
 Requires at least: 4.8
-Tested up to: 6.1.1
-Requires PHP: 5.3
+Tested up to: 6.8
+Requires PHP: 7.4
+Stable tag: 2.0
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Accessibility Tools Included: Missing Alt text finder, contrast checker, WCAG 2.1 checklist, automated testing software and a ton of free resources.
 
@@ -30,6 +33,25 @@ We give you some great resources in the form of links that will help you better 
 While this plugin can HELP you meet compliance requirements, you are the only one that can ensure that all requirements are met.
 
 If you find this plugin useful, please rate and review it. If you have a problem with this plugin, please send me an email letting us know what issues you are having. I will address all issues in a timely fashion. Thank you!
+
+== External Services ==
+
+This plugin uses the following third-party services:
+
+1. **Incrementable.js**  
+Used in the contrast testing tool to allow keyboard-accessible incrementable fields.  
+- Loaded from: `https://leaverou.github.com/incrementable/incrementable.js`  
+- No user data is sent.  
+- License: MIT License  
+- Source: [https://github.com/LeaVerou/incrementable](https://github.com/LeaVerou/incrementable)
+
+2. **Example API (Replace with actual endpoint)**  
+Used to send page URLs to an external server for SEO auditing (if applicable).  
+- Endpoint: `http://myserver.com/`  
+- Data sent: page URL  
+- Sent only during SEO analysis execution.  
+- If you operate this server, link your own Privacy Policy here.  
+  Example: [https://yourdomain.com/privacy-policy](https://yourdomain.com/privacy-policy)
 
 == Main Features Are: ==
 
@@ -126,3 +148,32 @@ This plugin does not work with all of the page builders available. We are workin
 If you feel that it is not working with your page builder. Please email us and let us know what page builder and version of that page builder you are using.
 
 Then we will add that to our list and let you know once our software is compatible with that builder.
+
+== Source Code ==
+
+This plugin includes bundled/minified JavaScript and CSS files to optimize performance. To comply with WordPress.org guidelines for human-readable code, the original, non-minified source code is included directly within the plugin under:
+
+`/assets/src/` or `/src/`
+
+This includes:
+- Original JavaScript files before minification or bundling.
+- SASS/SCSS or uncompiled CSS files (if applicable).
+- Any build configuration files (such as webpack.config.js or angular.json if used).
+
+These files are provided to ensure transparency and promote open-source collaboration.
+
+== Changelog ==
+
+= 2.0 =
+* UI issue fix.
+* Improvement & Bug Fix
+* Improved Usage Guidelines
+* Check Latest Compatibility
+* Update General Text
+
+= 1.4 =
+* Initial public release.
+
+== License ==
+
+This plugin is licensed under the GPLv2 or later. For more information, see [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
