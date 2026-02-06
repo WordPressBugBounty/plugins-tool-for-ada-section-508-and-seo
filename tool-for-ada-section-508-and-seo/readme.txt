@@ -2,13 +2,13 @@
 Contributors: Foucciano, rajeshsingh520, chilifide
 Tags:  web accessibility, accessible, ADA Section 508 standards, media library, missing alternative text finder
 Requires at least: 4.8
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.0
+Stable tag: 3.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Accessibility Tools Included: Missing Alt text finder, contrast checker, WCAG 2.1 checklist, automated testing software and a ton of free resources.
+Accessibility Tools Included: Missing Alt text finder, contrast checker, WCAG 3.0 checklist, automated testing software and a ton of free resources.
 
 
 == Description =
@@ -21,14 +21,17 @@ Easily add any Missing Alt Text, Description Text or Caption Text to all of the 
 == Contrast Ratio Checker ==
 Provides you with a Contrast Ratio Checker to make sure everything hits the minimum requirements.
 
-== WCAG 2.1 Compliance Checklist ==
-A interactive WCAG 2.1 Section 508 Checklist that helps you better understand your websites accessibility issues. 
+== WCAG 3.0 Compliance Checklist ==
+A interactive WCAG 3.0 Section 508 Checklist that helps you better understand your websites accessibility issues. 
 
 == Automated Accessibility Audit ==
 You can activate the A11Y auditing function and run multiple accessibility tests on your website and even get suggestions on how to fix them.
 
 == Resources ==
 We give you some great resources in the form of links that will help you better understand web accessibility and help your website become even more inclusive.
+
+== Course Related Functionality ==
+Access comprehensive accessibility training courses and educational materials directly within the plugin. Learn best practices, understand WCAG guidelines, and master accessibility implementation through interactive courses designed to help you and your team become accessibility experts.
 
 While this plugin can HELP you meet compliance requirements, you are the only one that can ensure that all requirements are met.
 
@@ -67,9 +70,11 @@ Used to send page URLs to an external server for SEO auditing (if applicable).
 
  6. Provides a free Contrast Ratio Checker. This allows you to easily understand your websites contrast ratios.
 
- 7. We provide you a interactive (WCAG 2.1) Section 508 Checklist. This checklist helps you better understand the WCAG 2.1 recommendations and guidelines.
+ 7. We provide you a interactive (WCAG 3.0) Section 508 Checklist. This checklist helps you better understand the WCAG 3.0 recommendations and guidelines.
  
  8. We offer a ton of Free Accessibility resources in the form of links that will greatly help your understanding of web accessibility.
+
+ 9. Access comprehensive accessibility training courses and educational materials to learn best practices and master accessibility implementation.
  
 == The video below is how to use our missing alt text feature. ==
 
@@ -94,7 +99,7 @@ Used to send page URLs to an external server for SEO auditing (if applicable).
 
 5. A contrast Ratio Checker to make it easy for you to check your websites Contrast Ratios.
 
-6. A WCAG 2.1 Checklist that allowys you to easily track your websites Section 508 (WCAG 2.1) compliance. This checklist does a great job in breaking down all the recommendations and guidelines.
+6. A WCAG 3.0 Checklist that allowys you to easily track your websites Section 508 (WCAG 3.0) compliance. This checklist does a great job in breaking down all the recommendations and guidelines.
 
 7. An example of our free automated accessibility testing software in action.
 
@@ -163,6 +168,16 @@ This includes:
 These files are provided to ensure transparency and promote open-source collaboration.
 
 == Changelog ==
+
+= 3.0 =
+* Added Courses functionality with interactive accessibility training modules
+* Added Quiz system for testing accessibility knowledge
+* Added Module-based learning structure for organized course content
+* Added Certificate generation for course completion
+* Added Progress tracking for courses and quizzes
+* Added Frontend course display and enrollment system
+* Improved overall user interface and experience
+* Enhanced accessibility compliance features
 
 = 2.0 =
 * UI issue fix.

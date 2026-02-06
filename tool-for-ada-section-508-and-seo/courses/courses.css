@@ -1,0 +1,64 @@
+/* Modal base */
+.aa-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100000; }
+.aa-modal__dialog { background: #fff; width: 420px; max-width: calc(100% - 32px); margin: 48px auto; padding: 20px; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.aa-modal__close { position: absolute; top: 8px; right: 8px; border: 0; background: transparent; font-size: 20px; cursor: pointer; }
+
+/* Tabs */
+.aa-tabs { display: flex; gap: 8px; margin: 12px 0; }
+.aa-tab { padding: 6px 10px; background: #f3f3f3; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
+.aa-tab--active { background: #e9efff; border-color: #7aa2ff; }
+
+/* Panels */
+.aa-panel { margin-top: 8px; }
+.aa-panel--hidden { display: none; }
+
+/* Forms */
+#aa-auth-modal label { display:block; margin-top: 10px; }
+#aa-auth-modal input { width: 100%; padding: 8px; margin-top: 4px; }
+#aa-auth-modal .aa-switch { margin-top: 8px; }
+#aa-auth-modal .aa-feedback { margin-top: 10px; }
+
+/* Password toggle functionality */
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-wrapper input {
+    padding-right: 35px; /* Make room for the toggle button */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+}
+
+.toggle-password:hover {
+    background-color: #f0f0f0;
+}
+
+.toggle-password:focus {
+    outline: 2px solid #007cba;
+    outline-offset: 2px;
+}
+
+.aa-module-view { margin-top: 20px; }
+.aa-module-panel h1 { margin-top: 0; font-size: 26px; font-weight: 600; }
+.aa-module-panel h2 { font-size: 22px; }
+.aa-module-panel h4 { font-size: 15px; }
+.aa-module-actions .button { padding: 8px 14px; }
+.aa-module-view ul { list-style: inside; }
+.aa-module-panel p, .aa-module-view ul li, .aa-quiz-panel p, .aa-quiz-panel label { font-size: 14px; line-height: 20px; }
+.aa-quiz-panel legend { font-size: 16px; line-height: 22px; margin-bottom: 5px; }
+.aa-module-view ul li ul { margin-left: 20px; }
+.aa-complete-panel #aa-course-complete-title { margin-top: 20px; text-align: center; }
