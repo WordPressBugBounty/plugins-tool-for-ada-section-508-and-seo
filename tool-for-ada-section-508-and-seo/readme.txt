@@ -1,171 +1,218 @@
 === Accessibility Tools & Alt Text Finder ===
-Contributors: Foucciano, rajeshsingh520, chilifide
-Tags:  web accessibility, accessible, ADA Section 508 standards, media library, missing alternative text finder
-Requires at least: 4.8
+Contributors: Foucciano
+Tags: web accessibility, accessible, ADA Section 508 standards, media library, missing alternative text finder
+Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 3.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Accessibility Tools Included: Missing Alt text finder, contrast checker, WCAG 3.0 checklist, automated testing software and a ton of free resources.
+WordPress accessibility checker for WCAG issues, missing Alt text finder, contrast checker, guided checklists, resources, and accessibility training.
 
+== Description ==
 
-== Description =
+This plugin helps you find, understand, and begin fixing real accessibility issues. Use the accessibility checker to review common page-level issues like missing or poor image Alt text, contrast problems, unclear links, missing labels, headings, landmarks, and page structure, with issues highlighted on the front end so you can see where they appear.
 
-This software HELPS you in the process of becoming ADA Section 508 compliant by providing:
+Instead of masking problems with an overlay, this plugin helps you identify issues and make real improvements. It includes an easy-to-understand page-level accessibility checker for common WCAG issues, tools to find and add missing Alt text, a contrast ratio checker, an interactive accessibility checklist, free accessibility resources, and a built-in web accessibility course.
 
-== Missing Alt Text Finder == 
-Easily add any Missing Alt Text, Description Text or Caption Text to all of the pictures in your Media Library and the pictures that are already published on your Pages and Posts. 
+**No account, email signup, credit card, or overlay gimmicks required, just install the plugin and start making meaningful accessibility improvements in WordPress.**
 
-== Contrast Ratio Checker ==
-Provides you with a Contrast Ratio Checker to make sure everything hits the minimum requirements.
+**Watch the 3-Minute Plugin Tour**
 
-== WCAG 3.0 Compliance Checklist ==
-A interactive WCAG 3.0 Section 508 Checklist that helps you better understand your websites accessibility issues. 
+https://youtu.be/ZimHulIBx-c
 
-== Automated Accessibility Audit ==
-You can activate the A11Y auditing function and run multiple accessibility tests on your website and even get suggestions on how to fix them.
+== What You Can Do Right After Installing ==
 
-== Resources ==
-We give you some great resources in the form of links that will help you better understand web accessibility and help your website become even more inclusive.
+* Run unlimited front-end accessibility checks for common WCAG issues on individual pages
+* Review headings, labels, contrast, link text, landmarks, and image Alt text
+* Use the screen reader preview wand to understand what may be announced
+* Find and fix images missing **Alt / Description / Caption** text
+* Update missing text individually or in bulk
+* Check color contrast ratios before publishing
+* Use a guided checklist to track progress
+* Access a built-in **web accessibility course** module
+* Follow links to free web accessibility resources
 
-== Course Related Functionality ==
-Access comprehensive accessibility training courses and educational materials directly within the plugin. Learn best practices, understand WCAG guidelines, and master accessibility implementation through interactive courses designed to help you and your team become accessibility experts.
+⭐ Trusted by WordPress users (4.9/5 rating with over 40,000 downloads).
 
-While this plugin can HELP you meet compliance requirements, you are the only one that can ensure that all requirements are met.
+== Why This Matters ==
 
-If you find this plugin useful, please rate and review it. If you have a problem with this plugin, please send me an email letting us know what issues you are having. I will address all issues in a timely fashion. Thank you!
+Web accessibility is about helping people use technology, regardless of ability. Since WordPress powers such a large portion of the web, WordPress site owners, developers, and content teams are uniquely positioned to make a real difference. This plugin helps make that first step easier by finding common accessibility issues, fixing missing image text, checking contrast, and providing training so you can start making meaningful improvements without needing to become an expert overnight.
 
-== External Services ==
+== Key Features ==
 
-This plugin uses the following third-party services:
+= 1. Accessibility Checker / Quick Page Scans =
 
-1. **Incrementable.js**  
-Used in the contrast testing tool to allow keyboard-accessible incrementable fields.  
-- Loaded from: `https://leaverou.github.com/incrementable/incrementable.js`  
-- No user data is sent.  
-- License: MIT License  
-- Source: [https://github.com/LeaVerou/incrementable](https://github.com/LeaVerou/incrementable)
+Run unlimited page-level checks directly on the front end of your WordPress site to identify common accessibility issues, highlight where they appear, and get practical guidance on what to review and fix.
 
-2. **Example API (Replace with actual endpoint)**  
-Used to send page URLs to an external server for SEO auditing (if applicable).  
-- Endpoint: `http://myserver.com/`  
-- Data sent: page URL  
-- Sent only during SEO analysis execution.  
-- If you operate this server, link your own Privacy Policy here.  
-  Example: [https://yourdomain.com/privacy-policy](https://yourdomain.com/privacy-policy)
+**What the Accessibility Checker Helps Review:**
 
-== Main Features Are: ==
+* Unlimited page-level checks for common WCAG issues
+* Headings and page structure
+* Form labels and input accessibility
+* Color contrast issues
+* Link text clarity
+* Missing image Alt text
+* Landmarks and page regions
+* Screen reader preview wand to help understand what may be announced
+* Code location details for identified issues
+* Suggested fixes and remediation guidance
 
- 1. Shows you all of the pictures from either your Media Library, Posts or Pages that are missing any of the 3 types of text. (Alternative Text, Description text or Caption Text)
+**Best for:** quickly finding common accessibility issues on the live front end, seeing where they appear, understanding what they mean, and learning how to start fixing them.
 
- 2. Allows you to add any missing - Alternative Text, Description Text or Caption Text to any of your pictures one at a time.
+= 2. Missing Alt Text Finder (Media Library + Live Content) =
 
- 3. Allows you to add missing Alternative Text, Description Text or Caption Text to all of your pictures with just one click.
+* See every image missing **Alt / Description / Caption** text
+* Find images already embedded in published **Posts/Pages**
+* Update missing text in bulk (or edit individually)
+* Filter to focus only on what needs attention
 
- 4. Helps the process of making your website ADA Section 508 Compliant become much easier. (by adding Alt Text to all pictures on your website)
+**Best for:** quick wins, measurable accessibility progress, cleaner content, and improved image context for SEO.
 
- 5. Allows you to run a Automated A11Y Accessibility Audit so you can see where you are not compliant.
+= 3. Contrast Ratio Checker =
 
- 6. Provides a free Contrast Ratio Checker. This allows you to easily understand your websites contrast ratios.
+Quickly check color contrast ratios with a simple pass/fail so text and UI elements are easier to read.
 
- 7. We provide you a interactive (WCAG 3.0) Section 508 Checklist. This checklist helps you better understand the WCAG 3.0 recommendations and guidelines.
- 
- 8. We offer a ton of Free Accessibility resources in the form of links that will greatly help your understanding of web accessibility.
+* Check foreground and background color combinations
+* Get a simple pass/fail result
+* Preview how the text looks on the selected background
+* Review contrast for normal and large text
+* Reduce common color contrast issues before they reach users
 
- 9. Access comprehensive accessibility training courses and educational materials to learn best practices and master accessibility implementation.
- 
-== The video below is how to use our missing alt text feature. ==
+= 4. Guided Accessibility Checklist =
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sOsi0leu4l0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+Use a simple interactive checklist to help you and your team:
 
-== The video below is part 2 on how to use all of the new accessibility tools we added. ==
+* Understand what to review
+* Prioritize what to fix first
+* Track accessibility progress over time
+* Build better accessibility habits inside WordPress
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Uoh81PRE98I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+= 5. Built-In Web Accessibility Course =
 
-== The video below is us giving our "Web Accessibility Made Easy" talk in Tampa Fl. ==
+Learn accessibility fundamentals directly inside WordPress with step-by-step lessons designed covering:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oZkaFVcnXl8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+* Web Accessibility Foundations
+* WCAG Guidelines
+* Accessible Design Principles
+* Accessible Development Principles
+* Testing and Remediation
+* Agency Implementation
+
+This is ideal for site owners, designers, developers, content editors, and teams that want practical guidance, not just tool output.
+
+= 6. Free Accessibility Resources =
+
+Access free accessibility resources and reference links to support long-term accessibility improvements.
+
+* WCAG 2.1 and WCAG 2.2 guidelines
+* VPAT/ACR templates and documentation resources
+* Links to relevant accessibility laws and standards
+* Educational materials for learning and improving accessibility
+* Resources to help site owners, developers, and teams take the next step
+
+== Built to Support Real Accessibility Work ==
+
+✅ **This plugin helps you find, understand, and fix common accessibility issues inside WordPress,** including missing image alt text, missing image descriptions/captions, contrast issues, and other common problems found through quick scans and guided checks.
+
+❌ **It is not a one-click compliance fix or overlay-style shortcut.** Accessibility still requires human review, manual testing, and thoughtful remediation, but this plugin gives you the tools, training, and guidance to start making meaningful improvements.
+
+== Short How-To Videos ==
+
+**Video #1: Accessibility Checker Tool**
+
+https://youtu.be/rB62XvXygjQ
+
+**Video #2: Finding & Fix Missing Alternative Text**
+
+https://youtu.be/nRDQA-5XeiU
+
+**Video #3: How to Use the Course**
+
+https://youtu.be/lINoez-k4Nw
+
+**Video #4: Accessibility Compliance Checklist**
+
+https://youtu.be/on3HJCcfsTM
+
+**Video #5: Color Contrast Checker**
+
+https://youtu.be/mQD6MU5L6bQ
+
+**Video #6: Free Resources for Web Accessibility**
+
+https://youtu.be/iyaVj7mvuKE
+
+== Want to Go Further? ==
+
+The free plugin gives you practical tools to start improving accessibility inside WordPress. For users who want expanded features, additional guidance, and more advanced accessibility support, the Pro version is designed to help you go further and make accessibility easier to manage over time.
+
+[**Explore Pro Features**](https://508accessible.com/accessibility-wp-multi-tool/)
+
+== Need Professional Accessibility Help? ==
+
+For professional accessibility audits, remediation, PDF accessibility, VPAT/ACR support, and training, visit: [508accessible.com](https://508accessible.com)
 
 == Screenshots ==
-1. Displays all of the photos in your media library so you can easily add any missing ALT Text
 
-2. Displays all published pages or posts that have photos on them.
-
-3. Displays all of the photos on your pages or posts so you can easily add any missing ALT Text.
-
-4. It will only display pages or posts that have photos on them.
-
-5. A contrast Ratio Checker to make it easy for you to check your websites Contrast Ratios.
-
-6. A WCAG 3.0 Checklist that allowys you to easily track your websites Section 508 (WCAG 3.0) compliance. This checklist does a great job in breaking down all the recommendations and guidelines.
-
-7. An example of our free automated accessibility testing software in action.
-
-8. A resources tab that gives you a lot of information and links that help you understand web accessibility.
+1. Front-end accessibility checker highlighting live issues on the page including headings, contrast, link text, labels, image alt text, and landmarks — with issue details and code shown in a side panel.
+2. Missing Alt Text Finder showing Media Library images with fields to add or update Alternative Text, Caption, and Description — individually or all at once.
+3. Contrast Ratio Checker showing background and text color inputs, a live contrast ratio score, pass/fail result, and a split preview of text readability.
+4. Built-in Accessibility Course overview showing all 6 modules — from Foundations to Agency Implementation — with free and Pro access levels indicated.
+5. Course quiz for Module 1 Foundations with multiple choice questions to test accessibility knowledge.
+6. Certificate of Completion awarded after finishing the ClearPath Web Accessibility Course.
+7. Course admin panel showing enrolled users, module progress tracking, and options to invite new employees or send follow-up emails.
+8. Interactive ADA Checklist organized by WCAG categories — work through Perceivable, Operable, and other principles and check off requirements as you go.
+9. Section 508 Checklist covering interoperability, accessibility services, and platform accessibility features with checkable compliance items.
+10. European Accessibility Act (EAA) Checklist covering WCAG 2.1 success criteria mapped to EU standard EN 301 549.
+11. Free Resources tab with links to micro lessons, WCAG guidelines, testing tools, designer and developer resources, and accessibility standards.
+12. ClearPath Web Accessibility homepage showing the plugin is trusted by 30,000+ sites with a 4.9 rating.
 
 == Installation ==
 
-1. Download the plugin onto your WP site.
-2. Activate the plugin.
-3. Thats it! 
-4. You will find this plugin inside the settings tab of your WP admin navigation menu.
+1. In your WordPress Admin dashboard, go to **Plugins → Add New**.
+2. Search for **Accessibility Tools & Alt Text Finder**.
+3. Click **Install Now**, then **Activate**.
+4. Go to **Tools → Accessibility Multi-Tool** and start with the **Missing Alt Text Finder**, or open the built-in course if you're new to accessibility.
 
 == Frequently Asked Questions ==
 
-= How does this software help me in the process to become Section 508 compliant =
+= Does this plugin make my site fully compliant? =
 
-One of the requirements to be Section 508 compliant is that - you have to provide text alternatives to all non-text content. This software makes it much easier for the developer or the client to add any missing Alternative Text to the non-text content. In this case, Images on your WP website.
+No. It helps you find and fix common issues (especially missing image text alternatives) and learn accessibility fundamentals, but compliance still requires human review and manual testing.
 
-= How do I use this software =
+= What does the accessibility checker review? =
 
-A. Chose 1 of the 3 locations that have images.
+The accessibility checker helps review common page-level issues, including headings, labels, color contrast, link text, image Alt text, and landmarks. It also includes a screen reader preview wand, issue location and code details, plus suggested fixes. Remember: automated checks are helpful, but they do not replace manual accessibility testing.
 
-1. Media Library
-2. Pages
-3. Posts
-*Note: There will be nothing displayed for any pages or post that are not published
-   
-B. Chose how you want the images to be organized. 
+= Is the web accessibility course included? =
 
-You can chose to have the images displayed in order based on what text you are looking to replace.
+Yes, the first module and quiz of the course is available inside the plugin and is designed to help site owners and content teams understand what to fix and how to prioritize improvements.
 
-1. Show All Media - This just displays all images in no particular order.
-2. Missing Caption - This displays all the images without Caption Text at the top.
-3. Missing Alt - This displays all the images that are missing the Alternative Text at the top.
-4. Missing Description - This displays all the images that are missing the Description Text at the top.
-*Note: If you are in the Pages/Posts then you will only be able to display images that are missing the Alternative Text.
+= What image text can I manage? =
 
-C. One you have added the text that you want to that image with the missing text, you have 2 options.
+Alternative Text (Alt), Description, and Caption fields for images, including images already used on Posts and Pages.
 
-1. Click the green update button to update that single image.
-2. Continue to add more missing text and then click the Update All button on the bottom.
+= Will this improve SEO too? =
 
-D. You can also add missing text to all the images with one button.
+Adding accurate Alt text can help with image understanding and overall content quality. Avoid keyword stuffing and write Alt text that describes the image's purpose clearly.
 
-1. On the first line you can add missing text in a category and then click the Add To All button.
+= Does it work with my theme or page builder? =
 
-= Why is it not displaying the images that are published on my page or post? =
+It works through WordPress media and content usage. If your builder stores images in custom ways, results may vary.
 
-This plugin does not work with all of the page builders available. We are working very hard to continually update this software to be compatible with more and more page builders.
+= Is there a Pro version? =
 
-If you feel that it is not working with your page builder. Please email us and let us know what page builder and version of that page builder you are using.
+Yes. The free plugin gives you practical tools to start improving accessibility inside WordPress. The Pro version is designed for users who want expanded features, additional guidance, and more advanced accessibility support inside the plugin. Visit: [508accessible.com/accessibility-wp-multi-tool](https://508accessible.com/accessibility-wp-multi-tool/)
 
-Then we will add that to our list and let you know once our software is compatible with that builder.
+= How do I get help with my WordPress accessibility? =
 
-== Source Code ==
+Need help beyond the plugin? ClearPath Web Accessibility offers WordPress accessibility audits, remediation, PDF accessibility, VPAT/ACR support, and training. You can also request a free initial homepage accessibility review, to help understand where your site stands. Visit: [508accessible.com](https://508accessible.com)
 
-This plugin includes bundled/minified JavaScript and CSS files to optimize performance. To comply with WordPress.org guidelines for human-readable code, the original, non-minified source code is included directly within the plugin under:
+= What's the best way to use this plugin? =
 
-`/assets/src/` or `/src/`
-
-This includes:
-- Original JavaScript files before minification or bundling.
-- SASS/SCSS or uncompiled CSS files (if applicable).
-- Any build configuration files (such as webpack.config.js or angular.json if used).
-
-These files are provided to ensure transparency and promote open-source collaboration.
+Start with a quick accessibility check → review the issues found → fix missing Alt text and image fields → check contrast → use the checklist → follow the course for long-term improvement.
 
 == Changelog ==
 
@@ -188,7 +235,3 @@ These files are provided to ensure transparency and promote open-source collabor
 
 = 1.4 =
 * Initial public release.
-
-== License ==
-
-This plugin is licensed under the GPLv2 or later. For more information, see [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
